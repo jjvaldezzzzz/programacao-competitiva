@@ -1,15 +1,13 @@
 #include <bits/stdc++.h>
-#define vector<int> vi;
+using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
-using namespace std;
+typedef vector<int> vi;
 
 int main(){
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
 
     vi v(3);
     cin >> v[0] >> v[1] >> v[2];
-    int r = min_element(v.begin(), v.end());
-    cout << r << endl;
+    auto mini = min_element(v.begin(), v.end());
+    cout << *mini << " " << *max_element(begin(v), end(v)) << endl;
 }
