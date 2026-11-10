@@ -1,4 +1,3 @@
-//(template)
 #include <bits/stdc++.h>
 typedef long long ll;
 using namespace std;
@@ -8,10 +7,8 @@ int main(){
     cin.tie(nullptr);
 
 
-    int t;
+    double t;
     cin >> t;
-    while(t--){
-        cout << "HELLO WORLD!!" << endl;
 
-    }
+    cout << fixed << setprecision(9) << t*t*3.141592653 << endl;
 }
