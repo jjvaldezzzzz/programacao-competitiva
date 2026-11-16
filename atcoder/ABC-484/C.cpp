@@ -23,62 +23,64 @@ int main(){
 
     cin >> n;
 
-    vi a(n+1, INF);
-    vi b(n+1, INF);
-    int cont = 0;
-
-    for (int i = 0 ; i < n ; i++) {
+    vi a(n + 1, INF);
+    vi b(n + 1, INF);
+    int flag = 1;
+    for (int i = 0;i<n;i++) {
         cin >> a[i];
     }
-    for (int i = 0 ; i < n ; i++) {
+    for (int i = 0;i<n;i++) {
         cin >> b[i];
     }
     int diff = INF;
-    int ind = INF;
-    for (int i = 1 ; i < n ; i++) {
+    int num = 0;
+    int cont = 0;
+    int ind = 0;
+    for (int i = 0;i<n + 1;i++) {
         if (a[i] != b[i]) {
             cont++;
-            if (a[i+1] == b[i]) {
-                diff = 0;
+            if (a[i] == b[i + 1]) {
+                diff = 1;
+                num = b[i];
                 ind = i + 1;
                 break;
             }
-            if (b[i+1] == a[i]) {
-                diff = 1;
+            if (a[i + 1] == b[i]) {
+                diff = 0;
+                num = a[i];
                 ind = i + 1;
                 break;
             }
 
         }
     }
-    if (diff == 0) {
-        for (int i = ind ; i < n+1; i++) {
-            if (a[i] != b[i-1]) {
-                cont++;
-                break;
+    int aux;
+    if (!diff) {
+        for (int i = ind;i<n;i++) {
+            if (a[i + 1] == b[i]) {
+                aux = a[i + 1];
+                a[i+1] = a[i];
+                a[i] = aux;
             }
+            ind = i + 1;
         }
     }
     else if (diff == 1) {
-        for (int i = ind ; i < n+1; i++) {
-            if (b[i] != a[i-1]) {
-                cont++;
-                break;
+        for (int i = ind;i<n;i++) {
+            if (b[i + 1] == a[i]) {
+                aux = b[i + 1];
+                b[i+1] = b[i];
+                b[i] = aux;
             }
+            ind = i + 1;
         }
     }
-    int flag = 1;
-    sort(all(a));
-    sort(all(b));
-    for (int i = 0 ; i < n ; i++) {
+    for (int i = ind ; i < n ; i++) {
         if (a[i] != b[i]) {
             flag = 0;
         }
     }
-    if (cont == 2 && flag) {
-        cout << "Yes\n";
-    }
-    else if (cont == 0) {
+    if (flag) {
         cout << "Yes\n";
     }
     else {
