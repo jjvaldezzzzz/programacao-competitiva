@@ -23,73 +23,50 @@ int main(){
 
     cin >> n;
 
-    vi a(n + 1, INF);
-    vi b(n + 1, INF);
-    int flag = 1;
-    for (int i = 0;i<n;i++) {
-        cin >> a[i];
-    }
-    for (int i = 0;i<n;i++) {
-        cin >> b[i];
-    }
-    int diff = INF;
-    int num = 0;
-    int cont = 0;
-    int ind = 0;
-    for (int i = 0;i<n + 1;i++) {
-        if (a[i] != b[i]) {
-            cont++;
-            if (a[i] == b[i + 1]) {
-                diff = 1;
-                num = b[i];
-                ind = i + 1;
-                break;
-            }
-            if (a[i + 1] == b[i]) {
-                diff = 0;
-                num = a[i];
-                ind = i + 1;
-                break;
-            }
+    vi a(n);
+    vi b(n);
 
-        }
-    }
-    int aux;
-    if (!diff) {
-        for (int i = ind;i<n;i++) {
-            if (a[i + 1] == b[i]) {
-                aux = a[i + 1];
-                a[i+1] = a[i];
-                a[i] = aux;
-            }
-            ind = i + 1;
-        }
-    }
-    else if (diff == 1) {
-        for (int i = ind;i<n;i++) {
-            if (b[i + 1] == a[i]) {
-                aux = b[i + 1];
-                b[i+1] = b[i];
-                b[i] = aux;
-            }
-            ind = i + 1;
-        }
-    }
-    for (int i = ind ; i < n ; i++) {
+    for (int i = 0;i<n;i++) cin >> a[i];
+    for (int i = 0;i<n;i++) cin >> b[i];
+
+    int pri = -1, ult = n;
+
+    for (int i = 0;i<n;i++) {
         if (a[i] != b[i]) {
-            flag = 0;
+            pri = i;
+            break;
         }
     }
-    if (flag) {
-        cout << "Yes\n";
+    for (int i = n-1;i>=0;i--) {
+        if (a[i] != b[i]) {
+            ult = i;
+            break;
+        }
+    }
+
+    if (pri == ult) {
+        cout << "No" << endl;
+        return 0;
+    }
+    if (pri == -1) {
+        cout << "Yes" << endl;
+        return 0;
+    }
+    int ultimo = a[ult];
+    int prim = a[pri];
+    vi a2 = a;
+    a.erase(a.begin() + pri);
+    a.insert(a.begin() + ult, prim);
+
+    a2.erase(a2.begin() + ult);
+    a2.insert(a2.begin() + pri, ultimo);
+
+    if (a == b || a2 == b) {
+        cout << "Yes" << endl;
     }
     else {
-        cout << "No\n";
+        cout << "No" << endl;
     }
-
-
-
-
 
     return 0;
 }
