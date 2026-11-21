@@ -16,8 +16,8 @@ typedef pair< int , int > ii;
 // (int) 'a' = 97, (int) 'A' = 45
 
 int main(){
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
+    //ios_base::sync_with_stdio(false);
+    //cin.tie(nullptr);
 
     int t;
 
