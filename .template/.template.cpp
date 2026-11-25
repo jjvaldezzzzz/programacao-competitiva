@@ -7,6 +7,9 @@ using namespace std;
 #define fi first
 #define se second
 #define all(x) x.begin(), x.end()
+#define sort(x) sor(all(x)))
+#define sortd(x) sort(x.rbegin(), x.rend())
+#define sum(x) accumulate(x.begin(), x.end(), 0)
 typedef long long ll;
 typedef unsigned long long ull;
 typedef long double ld;
